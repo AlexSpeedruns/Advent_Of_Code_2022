@@ -7,11 +7,8 @@ def main():
     with open(file_path, 'r') as file:
         lines = file.readlines()
     input = parse(lines)
-    part1(copy.deepcopy(input), lines)
-    print()
-    part2(input, lines)
+    input_two = copy.deepcopy(input)
 
-def part1(input, lines):
     for i in range(10, len(lines)):
         line = lines[i]
         line_arr = line.split(" ")
@@ -21,23 +18,15 @@ def part1(input, lines):
         for _ in range(amount):
             value = input[start].pop()
             input[end].append(value)
+        for j in range(amount*-1, 0, 1):
+            value = input_two[start][j]
+            input_two[end].append(value)
+            input_two[start].pop(j)
 
     for l in input:
         print(l[-1], end="")
-
-def part2(input, lines):
-    for i in range(10, len(lines)):
-        line = lines[i]
-        line_arr = line.split(" ")
-        amount = int(line_arr[1])
-        start = int(line_arr[3])-1
-        end = int(line_arr[5])-1
-        for j in range(amount*-1, 0, 1):
-            value = input[start][j]
-            input[end].append(value)
-            del input[start][j]
-
-    for l in input:
+    print()
+    for l in input_two:
         print(l[-1], end="")
 
 def parse(lines):
