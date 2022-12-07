@@ -27,17 +27,14 @@ def main():
                     size_dict[key] = int(line_arr[0])
 
     sum = 0
-    for value in size_dict.values():
-        if value <= 100000:
-            sum += value
-
-    print(sum)
-
     remainder = size_dict["/"] - 40000000
     min = 99999999
     for value in size_dict.values():
+        if value <= 100000:
+            sum += value
         if value >= remainder and value < min:
             min = value
+    print(sum)
     print(min)
 
 
