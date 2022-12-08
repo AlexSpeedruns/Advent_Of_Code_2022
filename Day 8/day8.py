@@ -52,64 +52,39 @@ def is_visible(grid, x, y):
 
 def get_score(grid, x, y):
     current = grid[x][y]
-    score = 1
-    early = False
     if y > 0:
-        count = 1
+        one = 0
         for i in range(y-1, -1, -1):
-            if grid[x][i] < current:
-                count += 1
-            else:
-                score *= count
-                early = True
+            one += 1
+            if grid[x][i] >= current:
                 break
-        if not early:
-            score *= count-1
     else:
         return 0
-    early = False
     if y < 98:
-        count = 1
+        two = 0
         for i in range(y+1, 99):
-            if grid[x][i] < current:
-                count += 1
-            else:
-                score *= count
-                early = True
+            two += 1
+            if grid[x][i] >= current:
                 break
-        if not early:
-            score *= count-1
     else:
         return 0
-    early = False
     if x > 0:
-        count = 1
+        three = 0
         for i in range(x-1, -1, -1):
-            if grid[i][y] < current:
-                count += 1
-            else:
-                score *= count
-                early = True
+            three += 1
+            if grid[i][y] >= current:
                 break
-        if not early:
-            score *= count-1
     else:
         return 0
-    early = False
     if x < 98:
-        count = 1
+        four = 0
         for i in range(x+1, 99):
-            if grid[i][y] < current:
-                count += 1
-            else:
-                score *= count
-                early = True
+            four += 1
+            if grid[i][y] >= current:
                 break
-        if not early:
-            score *= count-1
     else:
         return 0
-    return score
+    return one*two*three*four
 
 if __name__ == '__main__':
     main()
