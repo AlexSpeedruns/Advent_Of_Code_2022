@@ -38,7 +38,7 @@ def main(part):
     start = (0,500)
     count = 0
     done = False
-    while True:
+    while not done:
         current_sand = start
         while True:
             down_y = current_sand[0]+1
@@ -63,8 +63,6 @@ def main(part):
                 if part == 2 and current_sand == start:
                     done = True
                 break
-        if done:
-            break
     print(count)
 
 def fill_line(grid, start, end, other, axis):
